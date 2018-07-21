@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Blog.Biznis.DTO.KorisniciDto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_uloga)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_uloga)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit","Korisnici", new { id=item.id })">Edit</a>
+            <a href="@Url.Action("Delete", "Korisnici", new { id=item.id })">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

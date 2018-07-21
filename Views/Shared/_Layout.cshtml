@@ -1,0 +1,224 @@
+﻿<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Floral a Blogging Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+    @Styles.Render("~/Content/css");
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <!-- js -->
+    <!-- //js -->
+    <!-- for-mobile-apps -->
+    @Scripts.Render("~/bundles/jquery");
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Floral Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="container">
+            <div class="header-info">
+                <div class="logo">
+                    <a href="index.html"><img src="/Content/images/logo.png" alt=" " /></a>
+                </div>
+                <div class="logo-right">
+                    <span class="menu"><img src="/Content/images/menu.png" alt=" " /></span>
+                    <ul class="nav1">
+                        <li>@Html.ActionLink("Home", "Index", "Home");</li>
+                        <li> @Html.ActionLink("About me", "AboutMe", "Home");</li>
+                        @if (!Request.IsAuthenticated)
+                        {
+                            <li> @Html.ActionLink("Login", "Login", "Account");</li>
+                            <li> @Html.ActionLink("Register", "Register", "Account");</li>}
+                        else
+                        {
+                            <li> @Html.ActionLink("Logout", "LogOff", "Account");</li>}
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+                <!-- script for menu -->
+                <script>
+
+                    $("span.menu").click(function () {
+                        $("ul.nav1").slideToggle(300, function () {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- //script for menu -->
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="footer-grid">
+                    <h3>About Us</h3>
+                    <p>
+                        Nullam ac urna velit. Pellentesque in arcu tortor.
+                        Pellentesque nec est et elit varius pulvinar eget vitae sapien.
+                        Aenean vehicula accumsan gravida. Cum sociis natoque penatibus
+                        et magnis dis parturient montes, nascetur ridiculus mus. Phasellus
+                        et lectus in urna consequat consectetur ut eget risus. Nunc augue diam,
+                        mattis eu tristique luctus, aliquam vitae massa. Praesent lacinia nisi
+                        sit amet risus cursus porta.
+                    </p>
+                </div>
+                <div class="footer-grid">
+                    <h3>Site Page</h3>
+                    <ul>
+                        <li class="cap1"><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="articles.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-grid">
+                    <h3>Praesent pharetra</h3>
+                    <ul>
+                        <li><a href="single.html">Vestibulum iaculis scelerisque</a></li>
+                        <li><a href="single.html">Cras aliquam erat</a></li>
+                        <li><a href="single.html">Morbi imperdiet ipsum</a></li>
+                        <li><a href="single.html">Donec faucibus mollis</a></li>
+                        <li><a href="single.html">Praesent lacinia nisi</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>Template by<a href="http://w3layouts.com/"> w3layouts</a></p>
+        </div>
+    </div>
+    <!-- //footer -->
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                    containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+                };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <!-- //here ends scrolling icon -->
+</body>
+@RenderSection("scripts", false)
+<script>
+    $('.consequat').on('submit', 'form', function (e) {
+        e.preventDefault();
+        var komentar = $('#textarea').val();
+        var post = $('#btn-post-id').val();
+        $.ajax({
+            type: "get",
+            url: "http://localhost:59996/Home/komentar",
+            dataType: "Json",
+            data: {
+                id_post : post,
+                tekst_komentara: komentar,
+            },
+            success: function (komentar) {
+                var komentari = '<h4>Comments</h4>';
+                $.each(komentar, function (index, value) {
+                    komentari += `
+                                 <div class="comments-info">
+
+                                <div class="cmnt-icon-right">
+                                    <p>${Date('Y-m-d h:i:s',value.datum)})</p>
+                                    <p><a href="#">${value.ime_korisnika}</a></p>
+                                    <p class="cmmnt">
+                                        ${value.tekst_komentara}
+                                    </p>
+                                </div>
+                                <div class="clearfix"> </div>
+                                <div class="aliqua">
+                                    <a href="#">Reply</a>
+                                </div>
+                            </div>
+`;
+                });
+                $('.comments').html(komentari);
+            },
+            error: function (xhr, status) {
+                console.log(xhr);
+            }
+           
+        });
+    }
+    );
+    $('.obrisi').click(function () {
+        var id = $(this).val();
+        $.ajax({
+            type: "get",
+            url: "http://localhost:59996/Admin/Komentar/Delete",
+            dataType: 'Json',
+            data: {
+                id:id
+            },
+            success: function (komentari) {
+                var komentari_ispis = '';
+                $.each(komentari, function (index, k) {
+                    komentari_ispis += `
+<tr>
+                <td>
+                    ${k.ime_korisnika}
+                </td>
+                <td>
+                     ${k.post_naziv}
+                </td>
+                <td>
+                     ${k.tekst_komentara}
+                </td>
+                <td>
+                     ${k.datum}
+                </td>
+                <td>
+                    <button class="obrisi" value=" ${k.id}">Obrisi</button>
+                </td>
+            </tr>`
+                });
+                $('#komentari').html(komentari_ispis);
+
+            },
+            error: function (xhr) {
+                console.log(xhr.status)
+            }
+
+        });
+    })
+</script>
+</html>

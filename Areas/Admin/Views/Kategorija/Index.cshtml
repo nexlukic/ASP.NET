@@ -1,0 +1,33 @@
+﻿@using Blog.Biznis.DTO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Naziv
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (KategorijaDto k in ViewBag.kategorije) {
+    <tr>
+        <td>
+           @k.naziv
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=@k.id }) ||
+            @Html.ActionLink("Delete", "Delete", new { id=@k.id })
+        </td>
+    </tr>
+}
+
+</table>

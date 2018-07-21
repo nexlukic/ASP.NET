@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Blog.Biznis.DTO.PostDto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.naslov)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tekst)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.korisnik_ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.putanja)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.naslov)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tekst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.korisnik_ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datum)
+            </td>
+            <td>
+                <img height="100" width="100" src="~/Content/images/@Html.DisplayFor(modelItem => item.putanja)">
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Post", new { id = item.id_posta })">Edit</a>
+                <a href="@Url.Action("Details", "Post", new { id = item.id_posta })">Details</a>
+                <a href=" @Url.Action("Delete", "Post", new { id = item.id_posta })">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<div class="border1 col-lg-offset-4">
+    <div class="pre">
+        <a href="#">Prev</a>
+    </div>
+    <div class="number">
+        <ul>
+            @for (int i = 1; i <= ViewBag.broj; i++)
+            {
+                <li><a href="@Url.Action("Index", "Post",new { page = @i},null)"></a>@i</li>
+            }
+
+        </ul>
+    </div>
+    <div class="next">
+        <a href="#">Next</a>
+    </div>
+    <div class="clearfix"> </div>
+
+</div>

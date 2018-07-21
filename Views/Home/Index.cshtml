@@ -1,0 +1,108 @@
+﻿
+@using Blog.Biznis.DTO;
+@using Blog.Models.Aplication;
+@model PostViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
+
+}
+
+<div class="content">
+    <div class="container">
+        <div class="content-text">
+           
+            <div class="title">
+                @foreach (PostDto post in Model.post)
+                {
+                    <div class="some-title">
+                        <h3><a href="single.html">@post.naslov,@Model.broj</a></h3>
+                    </div>
+                    <div class="john">
+                        <p><a href="#">@post.korisnik_ime</a><span>@post.datum</span></p>
+                    </div>
+                    <div class="clearfix"> </div>
+                    <div class="tilte-grid">
+                        <a href="single.html"><img src="/Content/images/1.jpg" alt=" " /></a>
+                        <p class="Sed">
+                            <span>
+                                @post.tekst
+                            </span>
+                        </p>
+                    </div>
+                    <div class="read">
+
+                        <a href="@Url.Action("Single", "Home",new { id = @post.id_posta},null)">Read more</a>;
+                    </div>
+                    <div class="border">
+                        <p>a</p>
+                    </div>
+                }
+                @if (ViewBag.kategorija != null)
+                {
+                    <div class="border1">
+                        <div class="pre">
+                            <a href="#">Prev</a>
+                        </div>
+                        <div class="number">
+                            <ul>
+                                @for (int i = 1; i <= Model.broj; i++)
+                                {
+                                    <li><a href="@Url.Action("Index", "Home",new { id_kategorija = ViewBag.Kriterijum,page=@i},null)"></a>@i</li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="next">
+                            <a href="#">Next</a>
+                        </div>
+                        <div class="clearfix"> </div>
+
+                    </div>
+
+                }
+                else
+                {
+
+                    <div class="border1">
+                        <div class="pre">
+                            <a href="#">Prev</a>
+                        </div>
+                        <div class="number">
+                            <ul>
+                                @for (int i = 1; i <= Model.broj; i++)
+                                {
+                                    <li><a href="@Url.Action("Index", "Home",new { page = @i},null)"></a>@i</li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="next">
+                            <a href="#">Next</a>
+                        </div>
+                        <div class="clearfix"> </div>
+
+                    </div>
+                }
+            </div>
+            
+            <div class="categories">
+                <div class="categ">
+                    <div class="cat">
+                        <h3>Categories</h3>
+                        <ul>
+                           @foreach (KategorijaDto kategorija in Model.kategorija)
+                           {
+                               <li><a href="@Url.Action("Index", "Home",new { id_kategorija = @kategorija.id},null)">@kategorija.naziv</a></li>
+                           }
+
+                        </ul>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

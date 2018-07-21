@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Blog.Biznis.DTO.KomentarDto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ime_korisnika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.post_naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tekst_komentara)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datum)
+        </th>
+        <th></th>
+    </tr>
+    <div id="komentari">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ime_korisnika)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.post_naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tekst_komentara)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.datum)
+                </td>
+                <td>
+                    <button class="obrisi" value="@item.id">Obrisi</button>
+                </td>
+            </tr>
+
+        }
+    </div>
+
+</table>
